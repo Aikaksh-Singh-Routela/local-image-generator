@@ -1,3 +1,44 @@
+# 🖼️ Local Stable Diffusion Image Generator
+
+[![Python 3.11+](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)](https://pytorch.org/)
+[![Stable Diffusion](https://img.shields.io/badge/Stable%20Diffusion-1.5-orange.svg)](https://huggingface.co/runwayml/stable-diffusion-v1-5)
+[![GPU](https://img.shields.io/badge/GPU-GTX%201660-green.svg)]()
+
+## 📋 Overview
+
+A **fully local AI image generator** that runs on consumer-grade hardware (GTX 1660 6GB). No API keys, no cloud costs, no rate limits - generate unlimited images on your own computer.
+
+## 🔗 Links
+
+- **GitHub**: [local-image-generator](https://github.com/Aikaksh-Singh-Routela/local-image-generator)
+
+### Key Features
+
+| Feature | Description |
+|---------|-------------|
+| **🏠 Fully Local** | Runs entirely on your GPU - no internet required |
+| **🎨 Unlimited Generations** | No API costs or rate limits |
+| **⚡ Optimized for 6GB VRAM** | Memory optimizations for consumer GPUs |
+| **🚀 Fast Generation** | 20-40 seconds per image |
+| **📡 REST API** | Easy integration with any application |
+| **💻 Web Interface** | Simple UI for quick testing |
+
+## 🏗️ Architecture
+User Prompt
+↓
+Flask Backend
+↓
+Stable Diffusion Pipeline
+↓
+GPU (GTX 1660)
+↓
+Generated Image (PNG)
+↓
+Base64 Response → Frontend Display
+
+text
+
 ## 🛠️ Tech Stack
 
 | Component | Technology |
@@ -7,10 +48,6 @@
 | **Backend** | Flask |
 | **Frontend** | HTML/CSS/JS |
 | **Optimization** | FP16, Attention slicing, CPU offload |
-
-## 🔗 Links
-
-- **GitHub**: [local-image-generator](https://github.com/Aikaksh-Singh-Routela/local-image-generator)
 
 ## 📦 Installation
 
@@ -68,7 +105,6 @@ local-image-generator/
 ├── frontend/
 │   └── index.html       # Web interface
 └── README.md            # Documentation
-
 
 📄 License
 MIT License
