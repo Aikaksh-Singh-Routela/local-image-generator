@@ -8,8 +8,9 @@
 | **Frontend** | HTML/CSS/JS |
 | **Optimization** | FP16, Attention slicing, CPU offload |
 
-🔗 Links
-GitHub: local-image-generator
+## 🔗 Links
+
+- **GitHub**: [local-image-generator](https://github.com/Aikaksh-Singh-Routela/local-image-generator)
 
 ## 📦 Installation
 
