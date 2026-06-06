@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Local Image Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        input, button {
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: none;
+            margin: 10px;
+        }
+        input {
+            width: 50%;
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+        button {
+            background: #4ecdc4;
+            color: #1a1a2e;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .image-container {
+            margin-top: 30px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 20px;
+            min-height: 400px;
+        }
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🖼️ Local Image Generator</h1>
+    <p>Runs on your PC - No API needed!</p>
+    
+    <input type="text" id="prompt" placeholder="Enter prompt... e.g., cute golden retriever puppy">
+    <button onclick="generate()">Generate</button>
+    
+    <div class="image-container" id="result">
+        <p>✨ Your image will appear here ✨</p>
+    </div>
+    
+    <p><small>⚡ Powered by Stable Diffusion | Runs locally on your GPU</small></p>
+
+    <script>
+        async function generate() {
+            const prompt = document.getElementById('prompt').value;
+            const resultDiv = document.getElementById('result');
+            
+            if (!prompt) {
+                alert('Please enter a prompt!');
+                return;
+            }
+            
+            resultDiv.innerHTML = '<div style="padding:50px;">⏳ Generating... (20-40 seconds)</div>';
+            
+            try {
+                const response = await fetch('http://localhost:5000/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt: prompt, steps: 20 })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    resultDiv.innerHTML = `<img src="data:image/png;base64,${data.image}" alt="Generated image"><p>⏱️ ${data.time} seconds | ${data.steps} steps</p>`;
+                } else {
+                    resultDiv.innerHTML = `<p>❌ Error: ${data.error}</p>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<p>❌ Error: ${error.message}. Is the backend running?</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
